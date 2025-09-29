@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact — Mr Price</title>
+  <meta name="description" content="Contact Mr Price — customer support, store enquiries, and corporate requests.">
+  <style>
+    :root{
+      --brand:#0057a6; /* Mr Price-ish blue (adjust as needed) */
+      --muted:#6b7280;
+      --radius:12px;
+      --max-width:980px;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:#f862fd;color:#0b1220;display:flex;align-items:center;justify-content:center;padding:32px}
+    .card{width:100%;max-width:var(--max-width);background:#fd6fbd;border-radius:16px;box-shadow:0 8px 30px rgba(9,20,40,0.06);overflow:hidden}
+    header{display:flex;align-items:center;gap:20px;padding:28px 36px;border-bottom:1px solid #a6b9cf}
+    .logo{display:flex;align-items:center;gap:14px}
+    .logo .mark{width:56px;height:56px;background:linear-gradient(135deg,var(--brand),#48a1ff);border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px}
+    header h1{font-size:20px;margin:0}
+    header p{margin:0;color:var(--muted);font-size:13px}
+    .content{display:grid;grid-template-columns:1fr 420px;gap:28px;padding:28px 36px}
+    @media (max-width:900px){.content{grid-template-columns:1fr;padding:20px}.aside{order:2}.main{order:1}}
+
+    form{display:flex;flex-direction:column;gap:14px}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
+
+    label{display:block;font-size:13px;margin-bottom:6px;color:#0f1724}
+    input[type=text], input[type=email], input[type=tel], select, textarea{width:100%;padding:12px 14px;border:1px solid #e6edf5;border-radius:10px;font-size:14px}
+    textarea{min-height:140px;resize:vertical}
+    .muted{font-size:13px;color:var(--muted)}
+
+    .actions{display:flex;align-items:center;gap:12px;margin-top:6px}
+    button{background:var(--brand);color:white;padding:10px 16px;border:none;border-radius:10px;cursor:pointer;font-weight:600}
+    button:disabled{opacity:0.6;cursor:not-allowed}
+
+    .aside{background:#fbfdff;padding:18px;border-radius:10px;border:1px solid #f0f6ff}
+    .contact-card{display:flex;flex-direction:column;gap:12px}
+    .contact-item{display:flex;gap:10px;align-items:flex-start}
+    .kbd{background:#eef5ff;border-radius:8px;padding:6px 8px;font-weight:600;color:var(--brand)}
+
+    .error{color:#b91c1c;font-size:13px}
+    .success{color:#065f46;font-size:14px;font-weight:600}
+
+    footer{padding:18px 36px;background:#fff;border-top:1px solid #eef2f7;text-align:center;font-size:13px;color:var(--muted)}
+
+    /* small helper for required */
+    .required::after{content:' *';color:#b91c1c}
+
+  </style>
+</head>
+<body>
+  <div class="card" role="region" aria-label="Contact Mr Price">
+    <header>
+      <div class="logo">
+        <div class="mark" aria-hidden>MP</div>
+        <div>
+          <h1>Contact Mr Price</h1>
+          <p>We're here to help — customer service, store enquiries and corporate requests.</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="main" aria-labelledby="contact-heading">
+        <h2 id="contact-heading" style="margin-top:0">Send us a message</h2>
+
+        <form id="contactForm" novalidate>
+
+          <div class="row">
+            <div class="col">
+              <label for="name" class="required">Full name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required placeholder="Jane Doe">
+              <div class="error" id="err-name" aria-live="polite"></div>
+            </div>
+            <div class="col">
+              <label for="phone">Phone (optional)</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+27 82 000 0000">
+              <div class="error" id="err-phone"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label for="email" class="required">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+              <div class="error" id="err-email" aria-live="polite"></div>
+            </div>
+            <div style="width:220px">
+              <label for="department">Department</label>
+              <select id="department" name="department">
+                <option value="customer">Customer service</option>
+                <option value="stores">Stores & inventory</option>
+                <option value="corporate">Corporate enquiries</option>
+                <option value="press">Media & press</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" type="text" placeholder="Short summary">
+          </div>
+
+          <div>
+            <label for="message" class="required">Message</label>
+            <textarea id="message" name="message" required placeholder="Tell us more..."></textarea>
+            <div class="error" id="err-message" aria-live="polite"></div>
+          </div>
+
+          <!-- Honeypot to block bots (hidden from users) -->
+          <div style="display:none" aria-hidden>
+            <label for="website">Website</label>
+            <input id="website" name="website" type="text" autocomplete="off" tabindex="-1">
+          </div>
+
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+            <label style="display:flex;align-items:center;gap:10px">
+              <input id="subscribe" name="subscribe" type="checkbox">
+              <span class="muted">Subscribe to product updates and offers</span>
+            </label>
+            <div style="margin-left:auto;font-size:13px;color:var(--muted)">Required fields marked with <span class="required" aria-hidden></span></div>
+          </div>
+
+          <div class="actions">
+            <button type="submit" id="submitBtn">Send message</button>
+            <div id="formStatus" role="status" aria-live="polite"></div>
+          </div>
+
+        </form>
+
+        <script>
+          (function(){
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const statusEl = document.getElementById('formStatus');
+
+            function showError(id, message){
+              const el = document.getElementById(id);
+              el.textContent = message || '';
+            }
+
+            function validate(){
+              let ok = true;
+              const name = form.name.value.trim();
+              const email = form.email.value.trim();
+              const message = form.message.value.trim();
+              const website = form.website.value.trim(); // honeypot
+
+              showError('err-name',''); showError('err-email',''); showError('err-message',''); showError('err-phone','');
+
+              if(website){ // bot detected
+                ok = false;
+              }
+
+              if(!name){ showError('err-name','Please enter your full name.'); ok = false }
+              if(!email){ showError('err-email','Please enter your email.'); ok = false }
+              else if(!/^\S+@\S+\.\S+$/.test(email)){ showError('err-email','Please enter a valid email address.'); ok = false }
+              if(!message || message.length < 10){ showError('err-message','Please include a message (at least 10 characters).'); ok = false }
+
+              return ok;
+            }
+
+            async function handleSubmit(e){
+              e.preventDefault();
+              statusEl.textContent='';
+
+              if(!validate()) return;
+
+              submitBtn.disabled = true;
+              submitBtn.textContent = 'Sending...';
+
+              // Replace the URL below with your server endpoint that will process the contact request.
+              const endpoint = '/api/contact';
+
+              const payload = {
+                name: form.name.value.trim(),
+                email: form.email.value.trim(),
+                phone: form.phone.value.trim(),
+                department: form.department.value,
+                subject: form.subject.value.trim(),
+                message: form.message.value.trim(),
+                subscribe: !!form.subscribe.checked
+              };
+
+              try{
+                // Example using fetch. Your server should return JSON with `{ok: true}` on success.
+                const res = await fetch(endpoint, {
+                  method: 'POST',
+                  headers: {'Content-Type':'application/json'},
+                  body: JSON.stringify(payload)
+                });
+
+                if(!res.ok) throw new Error('Network error');
+                const json = await res.json();
+                if(json && json.ok){
+                  statusEl.innerHTML = '<span class="success">Thanks — your message has been sent. We will respond within 48 hours.</span>';
+                  form.reset();
+                } else {
+                  throw new Error((json && json.error) || 'Unknown server error');
+                }
+              }catch(err){
+                statusEl.innerHTML = '<span class="error">Sorry — we could not send your message. Please try again or email support@mrprice.example</span>';
+                console.error(err);
+              } finally{
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send message';
+              }
+            }
+
+            form.addEventListener('submit', handleSubmit);
+
+            // Small enhancement: client-side auto-save to localStorage (optional)
+            const autosaveKey = 'mrprice_contact_draft_v1';
+            ['name','email','phone','subject','message'].forEach(id => {
+              const el = document.getElementById(id);
+              el && el.addEventListener('input', ()=>{
+                const draft = {name:form.name.value, email:form.email.value, phone:form.phone.value, subject:form.subject.value, message:form.message.value};
+                try{ localStorage.setItem(autosaveKey, JSON.stringify(draft)) }catch(e){}
+              });
+            });
+            // restore
+            try{ const d = JSON.parse(localStorage.getItem(autosaveKey) || '{}'); if(d){ form.name.value=d.name||''; form.email.value=d.email||''; form.phone.value=d.phone||''; form.subject.value=d.subject||''; form.message.value=d.message||''; }}catch(e){}
+
+          })();
+        </script>
+
+      </section>
+
+      <aside class="aside" aria-labelledby="help-heading">
+        <h3 id="help-heading" style="margin-top:0">Other ways to reach us</h3>
+        <div class="contact-card">
+          <div class="contact-item"><div class="kbd">Chat</div><div><strong>Live chat</strong><div class="muted">Available Mon-Fri 08:30–17:00</div></div></div>
+          <div class="contact-item"><div class="kbd">☎</div><div><strong>Customer care</strong><div class="muted">+27 800 000 000</div></div></div>
+          <div class="contact-item"><div class="kbd">🏬</div><div><strong>Store support</strong><div class="muted">Find your local store on our stores page</div></div></div>
+          <div style="border-top:1px dashed #e8f1ff;padding-top:12px;font-size:13px;color:var(--muted)">
+            <strong>Press enquiries</strong>
+            <div class="muted">media@mrprice.example</div>
+          </div>
+        </div>
+
+        <hr style="border:none;border-top:1px solid #eef6ff;margin:14px 0">
+        <div style="font-size:13px;color:var(--muted)">
+          <strong>Need help with an order?</strong>
+          <p style="margin:8px 0 0">Please include your order number in the message and choose <em>Customer service</em> as the department.</p>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      © Mr Price. This form is for enquiries only — do not include sensitive personal data (e.g., credit card numbers).
+    </footer>
+  </div>
+</body>
+</html>
