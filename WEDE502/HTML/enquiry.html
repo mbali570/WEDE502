@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Clothing Enquiry — Mr Price</title>
+  <meta name="description" content="Product enquiry form for Mr Price Clothing — ask about sizes, colours, stock, or style advice.">
+  <style>
+    :root{--brand:#0057a6;--muted:#090b0e;--radius:12px;font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
+    *{box-sizing:border-box}
+    body{margin:0;background:#f38682;color:#04060a;display:flex;align-items:center;justify-content:center;padding:28px}
+    .wrap{width:100%;max-width:980px}
+    .card{background:#f85ab1;border-radius:16px;box-shadow:0 8px 30px rgba(250, 11, 11, 0.932);overflow:hidden}
+    header{padding:26px 28px;border-bottom:1px solid #eef3fa;display:flex;gap:16px;align-items:center}
+    .badge{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#48a1ff);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    header h1{margin:0;font-size:20px}
+    header p{margin:0;color:var(--muted);font-size:13px}
+
+    .content{display:grid;grid-template-columns:1fr 340px;gap:28px;padding:24px}
+    @media (max-width:920px){.content{grid-template-columns:1fr;padding:18px}.aside{order:2}.main{order:1}}
+
+    form{display:flex;flex-direction:column;gap:12px}
+    label{display:block;font-size:13px;margin-bottom:6px}
+    input[type=text], input[type=email], input[type=tel], select, textarea{width:100%;padding:10px 12px;border:1px solid #e6edf5;border-radius:10px;font-size:14px}
+    textarea{min-height:120px}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
+    .muted{color:var(--muted);font-size:13px}
+    .hint{font-size:12px;color:#080a0c}
+    .actions{display:flex;gap:12px;align-items:center;margin-top:6px}
+    button{background:var(--brand);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600}
+
+    .aside{background:#fbfdff;padding:16px;border-radius:10px;border:1px solid #f0f6ff}
+    .info{font-size:13px;color:var(--muted)}
+    .chip{display:inline-block;padding:6px 8px;border-radius:999px;border:1px solid #e6f0ff;font-size:13px}
+
+    footer{padding:14px 20px;background:#fff;border-top:1px solid #eef3fa;text-align:center;color:var(--muted);font-size:13px}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" role="region" aria-label="Mr Price Clothing Enquiry Form">
+      <header>
+        <div class="badge">MP</div>
+        <div>
+          <h1>Clothing Enquiry</h1>
+          <p>Ask about size, colour, stock availability or styling advice.</p>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="main" aria-labelledby="enquiry-heading">
+          <h2 id="enquiry-heading" style="margin-top:0">Product enquiry</h2>
+
+          <form id="enquiryForm" novalidate>
+
+            <div class="row">
+              <div class="col">
+                <label for="name">Full name <span class="muted">(required)</span></label>
+                <input id="name" name="name" type="text" autocomplete="name" required placeholder="Alex Smith">
+              </div>
+              <div style="width:220px">
+                <label for="contactPref">Contact preference</label>
+                <select id="contactPref" name="contactPref">
+                  <option value="email">Email</option>
+                  <option value="phone">Phone</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label for="email">Email <span class="muted">(required)</span></label>
+                <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+              </div>
+              <div class="col">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+27 82 000 0000">
+              </div>
+            </div>
+
+            <div>
+              <label for="productLink">Product link / code</label>
+              <input id="productLink" name="productLink" type="text" placeholder="Paste the product URL or code (e.g., 12345678)">
+              <div class="hint">Tip: include size(s) you're enquiring about for faster help.</div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label for="category">Category</label>
+                <select id="category" name="category">
+                  <option>Women's</option>
+                  <option>Men's</option>
+                  <option>Kids'</option>
+                  <option>Accessories</option>
+                </select>
+              </div>
+              <div class="col">
+                <label for="size">Size (if known)</label>
+                <input id="size" name="size" type="text" placeholder="e.g., M / 38 / UK 10">
+              </div>
+            </div>
+
+            <div>
+              <label for="colour">Colour or pattern</label>
+              <input id="colour" name="colour" type="text" placeholder="e.g., Navy stripe">
+            </div>
+
+            <div>
+              <label for="message">Message <span class="muted">(required)</span></label>
+              <textarea id="message" name="message" required placeholder="Tell us what you'd like to know — availability, fit, styling tips, etc."></textarea>
+            </div>
+
+            <!-- optional photo upload: note requires server support -->
+            <div>
+              <label for="photo">Attach photo (optional)</label>
+              <input id="photo" name="photo" type="file" accept="image/*">
+              <div class="hint">Max 5 MB. Uploaded images help with styling/fitting advice. Requires server-side handling.</div>
+            </div>
+
+            <!-- simple consent -->
+            <div style="display:flex;gap:10px;align-items:center">
+              <input id="consent" name="consent" type="checkbox" required>
+              <label for="consent" class="muted">I consent to Mr Price contacting me about this enquiry.</label>
+            </div>
+
+            <!-- honeypot -->
+            <div style="display:none" aria-hidden>
+              <label for="hp">Leave this field blank</label>
+              <input id="hp" name="hp" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="actions">
+              <button type="submit" id="submitBtn">Send enquiry</button>
+              <div id="status" role="status" aria-live="polite"></div>
+            </div>
+
+          </form>
+
+          <script>
+            (function(){
+              const form = document.getElementById('enquiryForm');
+              const submitBtn = document.getElementById('submitBtn');
+              const status = document.getElementById('status');
+
+              function validEmail(e){return /^\S+@\S+\.\S+$/.test(e)}
+
+              function validate(){
+                status.textContent='';
+                const name = form.name.value.trim();
+                const email = form.email.value.trim();
+                const message = form.message.value.trim();
+                const hp = form.hp.value.trim();
+
+                if(hp) return {ok:false, msg:'bot'};
+                if(!name) return {ok:false, msg:'Please enter your name.'};
+                if(!email || !validEmail(email)) return {ok:false, msg:'Please provide a valid email.'};
+                if(!message || message.length < 8) return {ok:false, msg:'Please include a message (8+ chars).'};
+                if(!form.consent.checked) return {ok:false, msg:'Please give consent to be contacted.'};
+                return {ok:true};
+              }
+
+              form.addEventListener('submit', async function(e){
+                e.preventDefault();
+                const v = validate();
+                if(!v.ok){ status.innerHTML = '<span style="color:#b91c1c">'+(v.msg==='bot'? 'Bot detected.' : v.msg)+'</span>'; return }
+
+                submitBtn.disabled = true; submitBtn.textContent='Sending...';
+
+                const endpoint = '/api/clothing-enquiry'; // replace with real endpoint
+                const data = new FormData();
+                ['name','email','phone','productLink','category','size','colour','message'].forEach(k=>data.append(k, form[k].value||''));
+                data.append('contactPref', form.contactPref.value);
+                data.append('consent', form.consent.checked ? 'yes' : 'no');
+                if(form.photo.files[0]) data.append('photo', form.photo.files[0]);
+
+                try{
+                  const res = await fetch(endpoint, {method:'POST', body: data});
+                  if(!res.ok) throw new Error('Network');
+                  const json = await res.json();
+                  if(json && json.ok){
+                    status.innerHTML = '<span style="color:#05603a;font-weight:600">Thanks — your enquiry has been submitted. We will respond within 48 hours.</span>';
+                    form.reset();
+                  } else {
+                    throw new Error(json && json.error ? json.error : 'Server error');
+                  }
+                }catch(err){
+                  console.error(err);
+                  status.innerHTML = '<span style="color:#b91c1c">Could not submit enquiry — try again or email clothing@mrprice.example</span>';
+                } finally{
+                  submitBtn.disabled = false; submitBtn.textContent='Send enquiry';
+                }
+
+              });
+
+            })();
+          </script>
+
+        </section>
+
+        <aside class="aside" aria-labelledby="help">
+          <h3 id="help" style="margin-top:0">Quick help</h3>
+          <div class="info">
+            <p>If you have an order number, include it. For size/fit questions, tell us your usual size and how you prefer a garment to fit.</p>
+            <p class="hint">If you're enquiring about stock, include the product code or link for a faster answer.</p>
+            <div style="margin-top:12px"><span class="chip">Delivery</span> <span class="chip">Returns</span> <span class="chip">Size guide</span></div>
+          </div>
+        </aside>
+      </main>
+
+      <footer>
+        © Mr Price Clothing. Do not send sensitive payment details through this form.
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
